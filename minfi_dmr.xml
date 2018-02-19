@@ -1,0 +1,29 @@
+<tool id="minfi_dmr" name="minfi_dmr" version="0.1.0">
+    <description>to find differentially methylated regions</description>
+    <requirements>
+        <requirement type="package" version="1.24.0">bioconductor-minfi</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        Rscript  ${__tool_directory__}/minfi_dmr.R  "$input1" "$input2" "$output1"
+    ]]></command>
+    <inputs>
+        <param type="data" name="input1" format="rdata" />
+        <param type="data" name="input2" format="csv" />
+    </inputs>
+    <outputs>
+        <data name="output1" format="txt" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="GRSet.rdata"/>
+            <param name="input2" value="pheno.csv"/>
+            <output name="output1" file="dmr.txt"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        This tool is a version of the bump hunting algorithm (Andrew E Jaffe et al. 2012) adapted to the 450k array finding find differentially methylated regions (DMRs)
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1093/bioinformatics/btu049</citation>
+    </citations>
+</tool>

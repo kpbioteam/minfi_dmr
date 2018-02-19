@@ -1,0 +1,8 @@
+categories: [Epigenetics]
+description: This tool is a version of the bump hunting algorithm (Andrew E Jaffe
+  et al. 2012) adapted to the 450k array finding find differentially methylated regions
+  (DMRs)
+homepage_url: https://github.com/kpbioteam/minfi_dmr
+name: minfi_dmr
+owner: kpbioteam
+remote_repository_url: https://github.com/kpbioteam/minfi_dmr
