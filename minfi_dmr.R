@@ -10,10 +10,7 @@ input4 = args[4]
 input5 = args[5]
 input6 = args[6]
 input7 = args[7]
-input8 = args[8]
-input9 = args[9]
-input10 = args[10]
-output1 = args[11]
+output1 = args[8]
 
 
 GRSet <- get(load(input1))
@@ -35,18 +32,10 @@ if(is.null(GRSet$cluster)){
 coef <- as.numeric(input4)
 cutoff <- as.numeric(input5)
 nullMethod <- input6 
-B <- as.numeric(input7)
-verbose <- input8
-smooth <- input9
-smoothFunction <- input10
-
-if(smooth == FALSE){
-  smoothFunction = NULL
-} else {
-  smoothFunction = smoothFunction
-}
+B <- 0 #default
+verbose <- input7
   
-bumps <- bumphunter(GRSet,
+dmrs <- bumphunter(GRSet,
                     design = designMatrix, 
                     cluster = cluster,
                     maxGap = maxGap,
@@ -54,9 +43,7 @@ bumps <- bumphunter(GRSet,
                     cutoff = cutoff, 
                     nullMethod = nullMethod,
                     B = B, 
-                    verbose = verbose, 
-                    smooth = smooth,
-                    smoothFunction = smoothFunction)
+                    verbose = verbose)
                 
 
 
