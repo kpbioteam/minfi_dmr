@@ -13,8 +13,7 @@ input7 = args[7]
 input8 = args[8]
 input9 = args[9]
 input10 = args[10]
-input11 = args[11]
-output1 = args[12]
+output1 = args[11]
 
 
 GRSet <- get(load(input1))
@@ -23,8 +22,7 @@ pheno <- read.csv(input2)
 
 designMatrix <- model.matrix(~ pheno$Phenotype)
 
-cluster <- input3
-maxGap <- as.numeric(input4)
+maxGap <- as.numeric(input3)
 
 if(is.null(GRSet$cluster)){
   cluster = NULL
@@ -34,13 +32,13 @@ if(is.null(GRSet$cluster)){
   maxGap = NULL
 }
 
-coef <- as.numeric(input5)
-cutoff <- as.numeric(input6)
-nullMethod <- input7 
-B <- as.numeric(input8)
-verbose <- input9
-smooth <- input10
-smoothFunction <- input11
+coef <- as.numeric(input4)
+cutoff <- as.numeric(input5)
+nullMethod <- input6 
+B <- as.numeric(input7)
+verbose <- input8
+smooth <- input9
+smoothFunction <- input10
 
 if(smooth == FALSE){
   smoothFunction = NULL
@@ -64,4 +62,4 @@ bumps <- bumphunter(GRSet,
 
 DMRTable <- dmrs$table
 
-write.table(DMRTable, output1)   
+write.table(DMRTable, output1)        
