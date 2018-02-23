@@ -1,0 +1,11 @@
+language: r
+cache: packages
+r_github_packages:
+  - jimhester/lintr
+install:
+  - R -e "install.packages('devtools')"
+  - R -e "devtools::install_github('rstudio/rmarkdown')"
+script:
+  - R -e "rmarkdown::render('test.Rmd')"
+after_success:
+  - Rscript -e 'lintr::lint_package()'

@@ -1,0 +1,6 @@
+---
+title: "An example Knitr/R Markdown document"
+author: "Kpbioteam"
+date: "23 Feb 2018"
+output: html_document
+---
