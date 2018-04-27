@@ -11,13 +11,14 @@ input5 = args[5]
 input6 = args[6]
 input7 = args[7]
 output1 = args[8]
+output2 = args[9]
 
 
 GRSet <- get(load(input1))
 
-pheno <- read.csv(input2)
+pheno <- read.table(input2,  skip = 1)
 
-designMatrix <- model.matrix(~ pheno$Phenotype)
+designMatrix <- model.matrix(~ pheno$V2)
 
 maxGap <- as.numeric(input3)
 
@@ -44,9 +45,16 @@ dmrs <- bumphunter(GRSet,
                     nullMethod = nullMethod,
                     B = B, 
                     verbose = verbose)
-                
-
 
 DMRTable <- dmrs$table
 
-write.table(DMRTable, output1)        
+write.table(DMRTable, output1)
+
+sign=sign(DMRTable$value)
+
+sign[sign==-1]="-"
+sign[sign==1]="+"
+
+dmr_track<-cbind(as.character(DMRTable$chr),DMRTable$start,DMRTable$end,sign)
+
+write.table(dmr_track,output2,quote = FALSE, sep = "\t\t\t\t",row.names = FALSE, col.names = FALSE,append=TRUE)        
