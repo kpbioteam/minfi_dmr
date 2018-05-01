@@ -10,17 +10,24 @@ input4 = args[4]
 input5 = args[5]
 input6 = args[6]
 input7 = args[7]
-output1 = args[8]
-output2 = args[9]
+input8 = args[8]
+input9 = args[9]
+output1 = args[10]
 
 
 GRSet <- get(load(input1))
 
-pheno <- read.table(input2,  skip = 1)
+pheno <- read.table(input2,skip = 1)
 
-designMatrix <- model.matrix(~ pheno$V2)
+group <- pheno$V2
 
-maxGap <- as.numeric(input3)
+group <- factor(group, levels = c(input3, input4))
+
+design.matrix <- model.matrix(~ 0 + group)
+
+colnames(design.matrix) <- levels(group)
+
+maxGap <- as.numeric(input5)
 
 if(is.null(GRSet$cluster)){
   cluster = NULL
@@ -30,14 +37,14 @@ if(is.null(GRSet$cluster)){
   maxGap = NULL
 }
 
-coef <- as.numeric(input4)
-cutoff <- as.numeric(input5)
-nullMethod <- input6 
+coef <- as.numeric(input6)
+cutoff <- as.numeric(input7)
+nullMethod <- input8
 B <- 0 #default
-verbose <- input7
+verbose <- input9
   
 dmrs <- bumphunter(GRSet,
-                    design = designMatrix, 
+                    design = design.matrix, 
                     cluster = cluster,
                     maxGap = maxGap,
                     coef = coef,
@@ -48,13 +55,10 @@ dmrs <- bumphunter(GRSet,
 
 DMRTable <- dmrs$table
 
-write.table(DMRTable, output1)
+meth  <- GRanges(seqnames=DMRTable$chr,
+                  ranges=IRanges
+                  (start=DMRTable$start,
+                  end=DMRTable$end),
+                  value_pos=DMRTable$value)
 
-sign=sign(DMRTable$value)
-
-sign[sign==-1]="-"
-sign[sign==1]="+"
-
-dmr_track<-cbind(as.character(DMRTable$chr),DMRTable$start,DMRTable$end,sign)
-
-write.table(dmr_track,output2,quote = FALSE, sep = "\t\t\t\t",row.names = FALSE, col.names = FALSE,append=TRUE)        
+write.table(meth, output1)    
