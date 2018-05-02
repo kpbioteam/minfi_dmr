@@ -2,6 +2,8 @@ require("minfi", quietly = TRUE)
 options(warn = -1)
 options("download.file.method"="wget")
 
+loc <- Sys.setlocale("LC_MESSAGES", "en_US.UTF-8")
+
 args <- commandArgs(trailingOnly = TRUE)
 input1 = args[1]
 input2 = args[2]
@@ -13,7 +15,6 @@ input7 = args[7]
 input8 = args[8]
 input9 = args[9]
 output1 = args[10]
-output2 = args[11]
 
 GRSet <- get(load(input1))
 
@@ -61,5 +62,4 @@ meth  <- GRanges(seqnames=DMRTable$chr,
                   end=DMRTable$end),
                   value_pos=DMRTable$value)
 
-write.table(meth, output1) 
-save(meth, file = output2)   
+write.table(meth, output1)    

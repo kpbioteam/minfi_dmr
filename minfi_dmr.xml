@@ -25,8 +25,7 @@
                     </param>
      </inputs>
     <outputs>
-        <data name="output1" format="bed" />
-        <data name="output2" format="rdata" /> 
+        <data name="output1" format="bed" /> 
    </outputs>
     <tests>
         <test>
@@ -40,7 +39,6 @@
             <param name="input8" value="permutation"/>
             <param name="input9" value="FALSE"/>
             <output name="output1" file="dmr.bed"/>
-            <output name="output2" file="peaks.rdata"/>
         </test>
     </tests>
     <help><![CDATA[
