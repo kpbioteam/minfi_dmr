@@ -13,7 +13,7 @@ input7 = args[7]
 input8 = args[8]
 input9 = args[9]
 output1 = args[10]
-
+output2 = args[11]
 
 GRSet <- get(load(input1))
 
@@ -61,4 +61,5 @@ meth  <- GRanges(seqnames=DMRTable$chr,
                   end=DMRTable$end),
                   value_pos=DMRTable$value)
 
-write.table(meth, output1)    
+write.table(meth, output1) 
+save(meth, file = output2)   
