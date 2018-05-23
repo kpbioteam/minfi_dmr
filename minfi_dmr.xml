@@ -7,8 +7,8 @@
         Rscript  ${__tool_directory__}/minfi_dmr.R "$input1" "$input2" "$input3" "$input4" "$input5" "$input6" "$input7" "$input8" "$input9" "$output1"
     ]]></command>
     <inputs>
-        <param type="data" name="input1" format="rdata" />
-        <param type="data" name="input2" format="tabular" />
+        <param type="data" name="input1" format="rdata" label="Genomic Ratio Set" />
+        <param type="data" name="input2" format="tabular" label="Phenotype Table"/>
         <param name="input3" type="text" value="" label="factor1" help="Name of the factor to compare factor1 vs factor2 e.g. cancer vs control"/>
         <param name="input4" type="text" value="" label="factor2" help="Name of the factor to compare factor1 vs factor2 e.g. cancer vs control"/>
         <param name="input5" type="text" value="250" label="maxGap Size" help="If cluster is not provided this maximum location gap will be used to define cluster"/>
@@ -25,7 +25,7 @@
                     </param>
      </inputs>
     <outputs>
-        <data name="output1" format="bed" /> 
+        <data name="output1" format="bed" label="DMRs Table" /> 
    </outputs>
     <tests>
         <test>
