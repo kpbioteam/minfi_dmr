@@ -2,7 +2,8 @@
     <description>to find differentially methylated regions</description>
     <requirements>
         <requirement type="package" version="1.24.0">bioconductor-minfi</requirement>
-    </requirements>
+    <requirement type="package" version="1.38.3">bioconductor-rtracklayer</requirement>
+</requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript  ${__tool_directory__}/minfi_dmr.R "$input1" "$input2" "$input3" "$input4" "$input5" "$input6" "$input7" "$input8" "$input9" "$output1"
     ]]></command>
@@ -12,9 +13,9 @@
         <param name="input3" type="text" value="" label="factor1" help="Name of the factor to compare factor1 vs factor2 e.g. cancer vs control"/>
         <param name="input4" type="text" value="" label="factor2" help="Name of the factor to compare factor1 vs factor2 e.g. cancer vs control"/>
         <param name="input5" type="text" value="250" label="maxGap Size" help="If cluster is not provided this maximum location gap will be used to define cluster"/>
-        <param name="input6" type="text" value="2" label="coef Size" help="An integer denoting the column of the design matrix containing the covariate of interest. The hunt for bumps will be only be done for the estimate of this coefficient."/>
-        <param name="input7" type="text" value="0.2" label="Cutoff Size" help="A numeric value. Values of the estimate of the genomic profile above the cutoff or below the negative of the cutoff will be used as candidate regions. It is possible to give two separate values (upper and lower bounds). If one value is given, the lower bound is minus the value."/>
- <param name="input8" type="select" label="nullMethod" help="Method used to generate null candidate regions, must be one of ‘bootstrap’ or ‘permutation’ (recommended)">
+       <param name="input6" type="text" value="0.2" label="Cutoff Size" help="A numeric value. Values of the estimate of the genomic profile above the cutoff or below the negative of the cutoff will be used as candidate regions. It is possible to give two separate values (upper and lower bounds). If one value is given, the lower bound is minus the value."/> 
+       <param name="input7" type="text" value="0" label="Number of Resamples" help="An integer denoting the number of resamples to use when computing null distributions. This defaults to 0. If permutations is supplied that defines the number of permutations/bootstraps and B is ignored."/>
+        <param name="input8" type="select" label="nullMethod" help="Method used to generate null candidate regions, must be one of ‘bootstrap’ or ‘permutation’ (recommended)">
                         <option value="permutation">permutation</option>
 			<option value="bootstrap">bootstrap</option>
                     </param>

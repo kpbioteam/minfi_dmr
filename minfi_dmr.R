@@ -1,4 +1,6 @@
 require("minfi", quietly = TRUE)
+require("rtracklayer", quietly = TRUE)
+
 options(warn = -1)
 options("download.file.method"="wget")
 
@@ -38,10 +40,11 @@ if(is.null(GRSet$cluster)){
   maxGap = NULL
 }
 
-coef <- as.numeric(input6)
-cutoff <- as.numeric(input7)
+
+cutoff <- as.numeric(input6)
+B <- as.numeric(input7)
 nullMethod <- input8
-B <- 0 #default
+coef <- 2 #default
 verbose <- input9
   
 dmrs <- bumphunter(GRSet,
@@ -62,4 +65,6 @@ meth  <- GRanges(seqnames=DMRTable$chr,
                   end=DMRTable$end),
                   value_pos=DMRTable$value)
 
-write.table(meth, output1)    
+export.bed(meth,output1)
+
+#write.table(meth, output1)    
