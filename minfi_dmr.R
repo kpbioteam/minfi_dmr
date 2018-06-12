@@ -51,19 +51,13 @@ dmrs <- bumphunter(GRSet,
                     design = design.matrix, 
                     cluster = cluster,
                     maxGap = maxGap,
-                    coef = coef,
                     cutoff = cutoff, 
                     nullMethod = nullMethod,
                     B = B, 
                     verbose = verbose)
 
-DMRTable <- dmrs$table
 
-meth  <- GRanges(seqnames=DMRTable$chr,
-                  ranges=IRanges
-                  (start=DMRTable$start,
-                  end=DMRTable$end),
-                  value_pos=DMRTable$value)
+dmrGR <- with(dmrs$table,GRanges(chr,IRanges(start,end),area=area,value=value))
+dmrGR$type <- ifelse(abs(dmrGR$value)<cutoff, "neither", ifelse(dmrGR$value<0,"hypo","hyper"))
 
-export.bed(meth,output1)
-    
+export.bed(dmrGR, con = "bed")
