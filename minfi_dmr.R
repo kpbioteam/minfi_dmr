@@ -60,4 +60,4 @@ dmrs <- bumphunter(GRSet,
 dmrGR <- with(dmrs$table,GRanges(chr,IRanges(start,end),area=area,value=value))
 dmrGR$type <- ifelse(abs(dmrGR$value)<cutoff, "neither", ifelse(dmrGR$value<0,"hypo","hyper"))
 
-export.bed(dmrGR, con = "bed")
+write.table(dmrGR, file= output1, quote = FALSE, row.names = FALSE, sep = "\t")
