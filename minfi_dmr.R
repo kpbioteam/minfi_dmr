@@ -66,5 +66,4 @@ meth  <- GRanges(seqnames=DMRTable$chr,
                   value_pos=DMRTable$value)
 
 export.bed(meth,output1)
-
-#write.table(meth, output1)    
+    
