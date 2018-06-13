@@ -1,5 +1,4 @@
 require("minfi", quietly = TRUE)
-require("rtracklayer", quietly = TRUE)
 
 options(warn = -1)
 options("download.file.method"="wget")
@@ -46,7 +45,7 @@ B <- as.numeric(input7)
 nullMethod <- input8
 coef <- 2 #default
 verbose <- input9
-  
+
 dmrs <- bumphunter(GRSet,
                     design = design.matrix, 
                     cluster = cluster,
@@ -58,6 +57,9 @@ dmrs <- bumphunter(GRSet,
 
 
 dmrGR <- with(dmrs$table,GRanges(chr,IRanges(start,end),area=area,value=value))
-dmrGR$type <- ifelse(abs(dmrGR$value)<cutoff, "neither", ifelse(dmrGR$value<0,"hypo","hyper"))
 
-write.table(dmrGR, file= output1, quote = FALSE,col.names = FALSE, row.names = FALSE, sep = "\t")
+dmrGR <- as.data.frame(dmrGR)
+
+colnames(dmrGR) <- c("seqnames","start","end","width","strand","area","value")
+
+write.table(dmrGR, file= output1, quote = FALSE, row.names = FALSE, sep = "\t")

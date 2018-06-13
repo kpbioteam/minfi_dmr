@@ -2,7 +2,6 @@
     <description>to find differentially methylated regions</description>
     <requirements>
         <requirement type="package" version="1.24.0">bioconductor-minfi</requirement>
-    <requirement type="package" version="1.38.3">bioconductor-rtracklayer</requirement>
 </requirements>
     <command detect_errors="exit_code"><![CDATA[
         Rscript  ${__tool_directory__}/minfi_dmr.R "$input1" "$input2" "$input3" "$input4" "$input5" "$input6" "$input7" "$input8" "$input9" "$output1"
@@ -24,7 +23,7 @@
                         <option value="TRUE">TRUE</option>
                         <option value="FALSE">FALSE</option>
                     </param>
-     </inputs>
+ </inputs>
     <outputs>
         <data name="output1" format="bed" label="Differentially Methylated Regions" /> 
    </outputs>
