@@ -25,7 +25,7 @@
                     </param>
  </inputs>
     <outputs>
-        <data name="output1" format="GTF" label="Differentially Methylated Regions" /> 
+        <data name="output1" format="bedgraph" label="Differentially Methylated Regions" /> 
    </outputs>
     <tests>
         <test>
@@ -38,7 +38,7 @@
             <param name="input7" value="0.02"/>
             <param name="input8" value="permutation"/>
             <param name="input9" value="FALSE"/>
-            <output name="output1" file="dmr.gtf"/>
+            <output name="output1" file="dmr.bedgraph"/>
         </test>
     </tests>
     <help><![CDATA[
