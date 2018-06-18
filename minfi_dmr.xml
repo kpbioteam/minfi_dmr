@@ -25,7 +25,7 @@
                     </param>
  </inputs>
     <outputs>
-        <data name="output1" format="bedgraph" label="Differentially Methylated Regions" /> 
+        <data name="output1" format="bedgraph" label="Differentially Methylated Regions"/> 
    </outputs>
     <tests>
         <test>
@@ -43,7 +43,11 @@
     </tests>
     <help><![CDATA[
         This tool is a version of the bump hunting algorithm (Andrew E Jaffe et al. 2012) adapted to the 450k array finding find differentially methylated regions (DMRs)
-    ]]></help>
+seqnames start            end           width   area            value
+chr6    31854251        31857100        2850    48.647197332882 0.824528768353933
+chr7    130129946       130132453       2508    41.8944884393652 0.722318766195951
+chr20   57425979        57428473        2495    41.474578953575 0.592493985051072   
+ ]]></help>
     <citations>
         <citation type="doi">10.1093/bioinformatics/btu049</citation>
     </citations>

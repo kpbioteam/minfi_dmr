@@ -62,4 +62,6 @@ dmrGR <- as.data.frame(dmrGR)
 
 colnames(dmrGR) <- c("seqnames","start","end","width","strand","area","value")
 
-write.table(dmrGR, file= output1, quote = FALSE, row.names = FALSE, sep = "\t")
+dmrGR$strand <- NULL
+
+write.table(dmrGR, file= output1, quote = FALSE,col.names = FALSE, row.names = FALSE, sep = "\t")
