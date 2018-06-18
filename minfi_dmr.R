@@ -64,4 +64,6 @@ colnames(dmrGR) <- c("seqnames","start","end","width","strand","area","value")
 
 dmrGR$strand <- NULL
 
+dmrGR$area <- NULL
+
 write.table(dmrGR, file= output1, quote = FALSE,col.names = FALSE, row.names = FALSE, sep = "\t")
