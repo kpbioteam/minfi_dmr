@@ -13,9 +13,7 @@ input4 = args[4]
 input5 = args[5]
 input6 = args[6]
 input7 = args[7]
-input8 = args[8]
-input9 = args[9]
-output1 = args[10]
+output1 = args[8]
 
 GRSet <- get(load(input1))
 
@@ -23,13 +21,11 @@ pheno <- read.table(input2,skip = 1)
 
 group <- pheno$V2
 
-group <- factor(group, levels = c(input3, input4))
+pair <- factor(pheno$V3)
 
-design.matrix <- model.matrix(~ 0 + group)
+design.matrix <- model.matrix(~ group + pair)
 
-colnames(design.matrix) <- levels(group)
-
-maxGap <- as.numeric(input5)
+maxGap <- as.numeric(input3)
 
 if(is.null(GRSet$cluster)){
   cluster = NULL
@@ -40,11 +36,11 @@ if(is.null(GRSet$cluster)){
 }
 
 
-cutoff <- as.numeric(input6)
-B <- as.numeric(input7)
-nullMethod <- input8
+cutoff <- as.numeric(input4)
+B <- as.numeric(input5)
+nullMethod <- input6
 coef <- 2 #default
-verbose <- input9
+verbose <- input7
 
 dmrs <- bumphunter(GRSet,
                     design = design.matrix, 
